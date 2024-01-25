@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Citoyen Management System</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Citoyen Management System</h1>
+      <hr />
+      <h2>Save Citoyen</h2>
+
+      <form
+        action="#"
+        th:action="@{/saveCitoyen}"
+        th:object="${citoyen}"
+        method="POST"
+      >
+        <input
+          type="text"
+          th:field="*{nom}"
+          placeholder="Citoyen First Name"
+          class="form-control mb-4 col-4"
+        />
+
+        
+        <label>Centre de vaccination :</label>
+            <select th:field="*{centreVaccination.id}">
+            <option th:each="centre : ${centresVaccination}" th:value="${centre.id}" th:text="${centre.nom}" />
+            </select> <br>
+            
+
+
+
+        <button type="submit" class="btn btn-info col-2">Save Citoyen</button>
+      </form>
+
+      <hr />
+
+      <a th:href="@{/}"> Back to Citoyen List</a>
+    </div>
+  </body>
+</html>
